@@ -7,6 +7,6 @@ import java.time.LocalDate;
 @Value
 public class UserResponse {
     Integer id;
-    String username;
+    String name;
     int age;
 }

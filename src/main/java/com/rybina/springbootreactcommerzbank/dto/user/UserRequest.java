@@ -7,9 +7,9 @@ import lombok.Value;
 @Value
 public class UserRequest {
 
-    @NotBlank(message = "Username can not be empty")
-    String username;
+    @NotBlank(message = "Name can not be empty")
+    String name;
 
-    @Min(value = 1, message = "The user should be at least 6 years old!")
+    @Min(value = 1, message = "The age should be positive")
     int age;
 }
