@@ -1,0 +1,255 @@
+$primary: #206F7D;
+$primary-light: rgba(32, 111, 125, 0.34);
+$white-inactive: rgba(255, 255, 255, 0.61);
+$white: white;
+$yellow: #ffc200;
+$soft-grey: #4c4c4c;
+$danger: #ff0044;
+
+$small-screen: 576px;
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.btn-primary {
+  border: 3px solid $yellow;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: $soft-grey;
+  font-size: 16px;
+  transition: color .2s;
+
+  &:hover {
+    background-color: $yellow;
+    color: $white;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 70px;
+  position: relative;
+
+  @media screen and (max-width: $small-screen) {
+    padding: 0 20px;
+  }
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  background-color: $primary;
+  height: 70px;
+  align-items: center;
+  padding: 20px 0;
+
+  .container {
+    display: flex;
+  }
+
+  &__link {
+    color: $white-inactive;
+    padding-right: 30px;
+    transition: color 0.2s;
+
+    &:hover {
+      font-weight: 400;
+      color: $white;
+    }
+
+    &_active {
+      display: block;
+      padding-right: 30px;
+      color: $white;
+    }
+  }
+}
+
+.user-form {
+  border: 2px solid $primary;
+  border-radius: 20px;
+  width: 400px;
+  padding: 0 30px 20px;
+  margin: 40px auto;
+  color: $soft-grey;
+
+  legend {
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  label {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  input {
+    font-size: 12px;
+    border: 2px solid $primary;
+    border-radius: 5px;
+    height: 30px;
+    padding: 0 5px;
+    width: 100%;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .error-form-message {
+    font-size: 12px;
+    font-weight: 100;
+    color: $danger;
+  }
+}
+
+.users-list-wrapper {
+  border: solid 1px $primary;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.users-list {
+  flex-grow: 1;
+
+  &_empty {
+    margin: 40px auto 0;
+  }
+
+  &_error {
+    color: $danger;
+    margin: 40px auto 0;
+  }
+
+  &__row {
+    display: flex;
+    padding: 20px;
+    color: $soft-grey;
+    border-bottom: $primary 1px solid;
+
+    &.title {
+      color: black;
+      text-transform: uppercase;
+      background-color: $primary-light;
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &__id {
+      width: 30px;
+      margin-right: 20px;
+      border-right: $soft-grey solid 1px;
+    }
+
+    &__name {
+      width: 200px;
+      margin-right: 20px;
+      border-right: $soft-grey solid 1px;
+
+      @media screen and (max-width: $small-screen) {
+        width: 100px;
+      }
+    }
+  }
+}
+
+.pagination-bar {
+  padding: 20px 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (max-width: $small-screen) {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 10px;
+  }
+
+  &__prev {
+    grid-column: 1;
+    justify-self: start;
+
+    @media screen and (max-width: $small-screen) {
+      grid-column: initial;
+      grid-row: 3;
+      width: 100%;
+    }
+  }
+
+  &__next {
+    grid-column: 3;
+    justify-self: end;
+
+    @media screen and (max-width: $small-screen) {
+      grid-row: 2;
+      grid-column: initial;
+      width: 100%;
+      align-self: initial;
+    }
+  }
+
+  &__info {
+    grid-column: 2;
+    justify-self: center;
+
+    @media screen and (max-width: $small-screen) {
+      grid-row: 1;
+      grid-column: initial;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+.alert {
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;;
+  padding: 20px 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $white;
+  top: -500px;
+  transition: top ease-in .2s;
+
+  &_active {
+    top: -30px;
+  }
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%);
+}
+
+.add-user {
+  width: 200px;
+  margin: 20px auto 0;
+}

@@ -1,8 +1,9 @@
 import {BrowserRouter, NavLink, Route, Routes} from "react-router-dom";
-import HomePage from "./pages/homePage.tsx";
-import AddUserPage from "./pages/addUserPage.tsx";
+import AllUsersPage from "./pages/AllUsersPage.tsx";
+import AddUserPage from "./pages/AddUserPage.tsx";
 import {useState} from "react";
 import {IUserResponse} from "./interfaces";
+import "./styles.scss";
 
 function App() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
@@ -13,14 +14,20 @@ function App() {
 
     return (
         <BrowserRouter>
-            <nav>
-                <NavLink to={"users"}>Main page</NavLink>
-                <NavLink to={"users/add"}>Add user</NavLink>
+            <nav className="nav">
+                <div className="container">
+                    <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
+                             to={"/users"}>All users</NavLink>
+                    <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
+                             to={"/users/add"}>Add user</NavLink>
+                </div>
             </nav>
-            <Routes>
-                <Route path={"users"} element={<HomePage setUsers={setUsers} users={users}/>}/>
-                <Route path={"users/add"} element={<AddUserPage addUser={addUser}/>}/>
-            </Routes>
+            <main className="container">
+                <Routes>
+                    <Route path={"users"} element={<AllUsersPage setUsers={setUsers} users={users}/>}/>
+                    <Route path={"users/add"} element={<AddUserPage addUser={addUser}/>}/>
+                </Routes>
+            </main>
         </BrowserRouter>
     )
 }
