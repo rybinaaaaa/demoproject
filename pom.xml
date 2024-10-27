@@ -30,7 +30,7 @@
         <java.version>17</java.version>
         <org.mapstruct.version>1.6.2</org.mapstruct.version>
         <node.version>v20.9.0</node.version>
-        <skipReact>true</skipReact>
+        <skipReact>false</skipReact>
         <lombok.version>1.18.34</lombok.version>
     </properties>
     <dependencies>

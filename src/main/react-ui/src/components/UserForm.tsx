@@ -35,7 +35,7 @@ const UserForm: FC<UserFormProps> = ({onSubmit}) => {
             name: {hasError: false},
         })
 
-        const hasErrors = (): boolean => Object.values(errors).some(error => error.hasError);
+        const hasErrors = (formValidationResult: FormErrors): boolean => Object.values(formValidationResult).some(error => error.hasError);
 
         const validate = (value: string, isValid: (value: string) => boolean, errorMessage: string): ErrorStatus => {
             return isValid(value)
@@ -80,10 +80,10 @@ const UserForm: FC<UserFormProps> = ({onSubmit}) => {
             e.preventDefault();
 
             const formErrors = validateForm();
-            setErrors(formErrors);
 
-            if (hasErrors()) {
+            if (hasErrors(formErrors)) {
                 console.error("Invalid input data on submit");
+                setErrors(formErrors);
                 return;
             }
             onSubmit(formValues)
