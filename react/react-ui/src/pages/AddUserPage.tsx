@@ -8,7 +8,7 @@ interface AddUserPageProps {
 }
 
 const AddUserPage: FC<AddUserPageProps> = ({addUser}) => {
-    const onSubmit =  async (user: IUserRequest) => {
+    const onSubmit = (user: IUserRequest) => {
         return request.post<IUserResponse, IUserRequest>('/users', user)
             .then(addUser)
             .catch(error => {
