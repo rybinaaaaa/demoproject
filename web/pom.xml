@@ -60,7 +60,7 @@
                 <version>3.8.1</version>
                 <executions>
                     <execution>
-                        <id>unpack</id>
+                        <id>Unpacking react dependency</id>
                         <phase>package</phase>
                         <goals>
                             <goal>unpack</goal>

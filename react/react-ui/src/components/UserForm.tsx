@@ -67,7 +67,11 @@ const UserForm: FC<UserFormProps> = ({onSubmit}) => {
             setFormValues({
                 age: "",
                 name: ""
-            })
+            });
+            setErrors(({
+                age: {hasError: false},
+                name: {hasError: false},
+            }));
         }
 
         const onSuccessfulSubmit = () => {
@@ -88,6 +92,7 @@ const UserForm: FC<UserFormProps> = ({onSubmit}) => {
             }
             onSubmit(formValues)
                 .then(onSuccessfulSubmit);
+            clearForm();
         };
 
         const renderError = (field: ErrorStatus) => {
