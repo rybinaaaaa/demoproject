@@ -4,6 +4,7 @@ import AddUserPage from "./pages/AddUserPage.tsx";
 import {useState} from "react";
 import {IUserResponse} from "./interfaces";
 import "./styles.scss";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 function App() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
@@ -26,6 +27,7 @@ function App() {
                 <Routes>
                     <Route path={"users"} element={<AllUsersPage setUsers={setUsers} users={users}/>}/>
                     <Route path={"users/add"} element={<AddUserPage addUser={addUser}/>}/>
+                    <Route path={"*"} element={<NotFoundPage />} />
                 </Routes>
             </main>
         </BrowserRouter>
