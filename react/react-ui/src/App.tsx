@@ -1,7 +1,7 @@
 import {BrowserRouter, NavLink, Route, Routes} from "react-router-dom";
 import AllUsersPage from "./pages/AllUsersPage.tsx";
 import AddUserPage from "./pages/AddUserPage.tsx";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {IUserResponse} from "./interfaces";
 import "./styles.scss";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
@@ -9,9 +9,9 @@ import NotFoundPage from "./pages/NotFoundPage.tsx";
 function App() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
 
-    const addUser = (user: IUserResponse) => {
-        setUsers([user, ...users])
-    }
+    const addUser = useCallback((user: IUserResponse) => {
+        setUsers([user, ...users]);
+    }, []);
 
     return (
         <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
                 <Routes>
                     <Route path={"users"} element={<AllUsersPage setUsers={setUsers} users={users}/>}/>
                     <Route path={"users/add"} element={<AddUserPage addUser={addUser}/>}/>
-                    <Route path={"*"} element={<NotFoundPage />} />
+                    <Route path={"*"} element={<NotFoundPage/>}/>
                 </Routes>
             </main>
         </BrowserRouter>
