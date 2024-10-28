@@ -1,6 +1,5 @@
 package com.rybina.springbootreactcommerzbank.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +11,7 @@ public class MvcController {
         return "forward:/index.html";
     }
 
-    @RequestMapping(value = "/{path:[^.]*}/{subpath:[^.]*}")
+    @RequestMapping(value = "/**/{subpath:[^.]*}")
     public String redirectSubPathes() {
         return "forward:/index.html";
     }
