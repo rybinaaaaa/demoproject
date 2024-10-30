@@ -5,19 +5,17 @@ import com.rybina.springbootreactcommerzbank.dto.user.UserResponse;
 import com.rybina.springbootreactcommerzbank.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @RequestMapping("api/v1/users")
 @RequiredArgsConstructor
-@CrossOrigin
+//@CrossOrigin("http://localhost:5173")
 public class UserController {
     private final UserService userService;
 
@@ -28,8 +26,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> getAll(Pageable pageable) {
-        Page<UserResponse> users = userService.findAll(pageable);
+    public ResponseEntity<Page<UserResponse>> getAll(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "10") int size) {
+        Page<UserResponse> users = userService.findAll(PageRequest.of(page, size));
         return ResponseEntity.ok(users);
     }
 
