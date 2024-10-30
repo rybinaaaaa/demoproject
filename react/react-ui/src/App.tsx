@@ -5,6 +5,7 @@ import {useState} from "react";
 import {IUserResponse} from "./interfaces";
 import "./styles.scss";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import NavigationWrapper from "./components/NavigationWrapper.tsx";
 
 function App() {
     const [users, setUsers] = useState<IUserResponse[]>([]);
@@ -15,19 +16,17 @@ function App() {
 
     return (
         <BrowserRouter>
-            <nav className="nav">
-                <div className="container">
-                    <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
-                             to={"/users"}>All users</NavLink>
-                    <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
-                             to={"/users/add"}>Add user</NavLink>
-                </div>
-            </nav>
+            <NavigationWrapper>
+                <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
+                         to={"/users"}>All users</NavLink>
+                <NavLink end className={({isActive}) => isActive ? "nav__link nav__link_active" : "nav__link"}
+                         to={"/users/add"}>Add user</NavLink>
+            </NavigationWrapper>
             <main className="container">
                 <Routes>
                     <Route path={"users"} element={<AllUsersPage setUsers={setUsers} users={users}/>}/>
                     <Route path={"users/add"} element={<AddUserPage addUser={addUser}/>}/>
-                    <Route path={"*"} element={<NotFoundPage />} />
+                    <Route path={"*"} element={<NotFoundPage/>}/>
                 </Routes>
             </main>
         </BrowserRouter>
